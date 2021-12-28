@@ -1,47 +1,12 @@
-import * as React from 'react';
-import { FC } from 'react';
-import { Button, View, Text } from 'react-native';
+import React, { useEffect } from 'react';
+
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useEffect } from 'react';
+
 import { useMachine } from '@xstate/react';
 import { createMachine, assign } from 'xstate';
 
-interface HomeScreenProps {
-  onDetailClick(): void;
-  counter: number;
-}
-
-const HomeScreen: FC<HomeScreenProps> = ({ onDetailClick, counter }) => {
-  console.log("rerender home");
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen {counter}</Text>
-      <Button
-        title="Go to Details"
-        onPress={onDetailClick}
-      />
-    </View>
-  );
-};
-
-interface DetailsScreenProps {
-  onHomeClick(): void;
-  counter: number;
-}
-
-const DetailsScreen: FC<DetailsScreenProps> = ({ onHomeClick, counter }) => {
-  console.log("rerender details");
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen {counter}</Text>
-      <Button
-        title="Go home"
-        onPress={onHomeClick}
-      />
-    </View>
-  );
-};
+import { HomeScreen, DetailsScreen } from './src';
 
 type StackParamList = {
   home: undefined,
@@ -71,7 +36,7 @@ const NavMachine = createMachine<NavContext, NavEvent>({
     details: {
       on: { 
         HOME_CLICK: {
-          target: 'details',
+          target: 'home',
           actions: [assign({ counter: (context) => context.counter + 1 })]
         },
       },

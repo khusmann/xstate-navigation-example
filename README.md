@@ -18,6 +18,7 @@ global context dependencies they have (because it all goes through props).
 Although this little example works, I doubt this is a good pattern for production
 because of the challenges of keeping react-nav's state in sync with xstate. For
 example, clicking the back button breaks everything in the present example. This is
-fixable, but I imagine I'd keep finding little quirks to work around like this. It seems
+fixable, but I imagine I'd keep finding little quirks to work around like this.
+(Also everything rerenders on state changes which may or may not be fixable) It seems
 that it'd be better to just make a new navigation library to do this sort of thing
 (e.g. react-nonav).
