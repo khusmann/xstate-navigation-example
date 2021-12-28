@@ -15,7 +15,7 @@ component-level events map to messages passed to the top-level state machine.
 I think this would also make the components easier to test, and clearer what
 global context dependencies they have (because it all goes through props).
 
-Although this little example works, I doubt this is a good pattern for production
+Although this little example "works", I doubt this is a good pattern for production
 because of the challenges of keeping react-nav's state in sync with xstate. For
 example, clicking the back button breaks everything in the present example. This is
 fixable, but I imagine I'd keep finding little quirks to work around like this.
